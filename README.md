@@ -5,3 +5,4 @@
 A detailed step-by-step tutorial on how to implement a JSON API relationship using Crnk and Spring Boot.
 
 [https://www.codenotfound.com/json-api-crnk-relationship-example.html](https://www.codenotfound.com/json-api-crnk-relationship-example.html)
+# Json-crnk-hibernate-embeded
