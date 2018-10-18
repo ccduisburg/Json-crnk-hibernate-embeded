@@ -25,8 +25,9 @@
         <property name = "hibernate.connection.password">
             root
         </property>
+        <property name="hibernate.connection.pool_size">10</property>
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
-        <property name="show_sql">false</property>
+        <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="use_sql_comments">false</property>
         <!--<property name="hibernate.enable_lazy_load_no_trans">true</property>-->
@@ -38,5 +39,8 @@
         <mapping class="com.codenotfound.crnk.domain.model.BookCategory"/>
         <mapping class="com.codenotfound.crnk.domain.model.Address" />
         <mapping class="com.codenotfound.crnk.domain.model.Library" />
+       <!-- <mapping class="com.codenotfound.crnk.domain.model.Student"/>-->
+        <mapping class="com.codenotfound.crnk.domain.model.Name"/>
+
     </session-factory>
 </hibernate-configuration>

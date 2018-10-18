@@ -10,19 +10,21 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
-@Table(name="address")
+//@Entity
+//@Table(name="address")
+@Embeddable
 @Getter
 @Setter
-@JsonApiResource(type="adresses")
-public class Address implements Serializable {
-    @Id
-    @GeneratedValue
-    @JsonApiId
-    private long id;
+//@JsonApiResource(type="adresses")
+//public class Address implements Serializable {
+public class Address{
 
-    @Column(nullable = false)
-    private String location;
+//    @GeneratedValue
+//    @JsonApiId
+//    private long id;
+
+    @Column//(nullable = false)
+    private String strasse;
 
     @Column
     private Integer hnummer;
@@ -34,18 +36,20 @@ public class Address implements Serializable {
     private String stadt;
 
 
-    @OneToOne(mappedBy = "address")
-    @JsonIgnore
-    @JsonApiRelation(opposite = "address")
-    private Library library;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    @JoinColumn(name = "library_id")
+//    @JsonApiRelation(opposite = "address")
+//    private Library library;
+//
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    @JoinColumn(name = "person_id")
+//    @JsonApiRelation(opposite = "address")
+//    private Person people;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
-    @JsonApiRelation(opposite = "address")
-    private Person person;
-
-    public Address(String location, Integer hnummer, String PLZ, String stadt) {
-        this.location = location;
+    public Address(String strasse, Integer hnummer, String PLZ, String stadt) {
+        this.strasse = strasse;
         this.hnummer = hnummer;
         this.PLZ = PLZ;
         this.stadt = stadt;
@@ -55,6 +59,6 @@ public class Address implements Serializable {
     }
 
     public String toString() {
-        return String.format("Address(%d,%s,%d,%s,%s)", id, location, hnummer, PLZ, stadt);
+        return String.format("Address(%d,%s,%d,%s,%s)", strasse, hnummer, PLZ, stadt);
     }
 }

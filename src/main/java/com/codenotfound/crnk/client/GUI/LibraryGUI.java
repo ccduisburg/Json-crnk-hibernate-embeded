@@ -67,7 +67,7 @@ public class LibraryGUI extends Application {
 
     private void refreshTable() {
         table.getItems().clear();
-        table.getItems().addAll(client.findBookPersonAddressLibrary());
+        //table.getItems().addAll(client.findBookPersonAddressLibrary());
     }
     private VBox getVBox() {
         /*
@@ -305,7 +305,7 @@ public class LibraryGUI extends Application {
 
         table.getColumns().addAll(strasse, hnummer, PLZ, city);
 
-        alladress.addAll(client.findAllAddresses());
+       // alladress.addAll(client.findAllAddresses());
         table.getItems().clear();
         table.getItems().addAll(alladress);
         System.out.println(alladress);

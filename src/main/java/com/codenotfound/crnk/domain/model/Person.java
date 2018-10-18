@@ -23,20 +23,27 @@ public class Person implements Serializable {
 @JsonApiId
 @GeneratedValue
   private Long id;
-  @Column
-  private String name;
-  @Column
-  private String vorname;
+ // @Column
+  @Embedded
+  private Name name;
+
   @Column
   private String beruf;
 
-  @OneToOne(mappedBy = "person", cascade = CascadeType.ALL,
-  fetch = FetchType.LAZY, optional = false)
-  @JsonApiRelation(opposite = "person")
+  @Embedded
   private Address address;
 
+
+
+//  @OneToOne(mappedBy = "people", cascade = CascadeType.ALL,
+//  fetch = FetchType.EAGER, optional = false)
+////    @OneToOne(cascade = CascadeType.ALL,
+////        fetch = FetchType.EAGER)
+//  @JsonApiRelation(opposite = "people")
+//  private Address address;
+
   @ManyToMany(mappedBy = "people", cascade = CascadeType.ALL,
-          fetch = FetchType.LAZY)
+          fetch = FetchType.EAGER)
   @JsonApiRelation(opposite = "people")
   @JsonIgnore
   private List<Book> books;
@@ -44,19 +51,21 @@ public class Person implements Serializable {
   public Person() {
       }
 
-  public Person(Long id, String name) {
-    this.id = id;
+  public Person(Name name, String beruf, Address address) {
     this.name = name;
-  }
-
-  public Person(String name, String vorname, String beruf) {
-    this.name = name;
-    this.vorname = vorname;
     this.beruf = beruf;
+    this.address = address;
   }
 
+  public Person(Name name) {
+    this.name = name;
+  }
+  public Person(Name name,String beruf) {
+    this.name = name;
+    this.beruf=beruf;
+  }
   @Override
   public String toString() {
-    return "person[id=" + id + ", name=" + name + "]"+ vorname+", Vorname= [" +beruf+"]";
+    return "person[id=" + id + ", name=" + name + "]"+ " beruf= [" +beruf+"]";
   }
 }

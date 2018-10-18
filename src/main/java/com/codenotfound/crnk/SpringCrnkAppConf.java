@@ -30,8 +30,6 @@ public class SpringCrnkAppConf {
     @Autowired
     private LibraryRepository libraryRepository;
 
-    @Autowired
-    private AddressRepository addressRepository;
 
     @Autowired
     PersonRepository personRepository;
@@ -44,13 +42,21 @@ public class SpringCrnkAppConf {
         b2=new Book("book2","bok2 hakkinda");
         b3= new Book("book3","bok3 hakkinda");
 
-        Person person1 = new Person("John","Johnsen","Eng");
-        Person person2 = new Person("Leo", "Messi", "Fussballer");
+        Name morrisname=new Name("Herr","Kabalas","Morris","","Dr.");
+        Name lorrisname=new Name("Herr","Mabile","Lorris","","");
+        Name lauraname=new Name("Frau","Salama","Laura","","Eng.");
+
+        Person person1 = new Person(lorrisname,"Student");
+        Person person2 = new Person(lauraname, "Eng");
+        Person person3 =new Person(morrisname,"");
+
         b1.setPeople(Stream.of(person1).collect(Collectors.toList()));
         b2.setPeople(Stream.of(person2).collect(Collectors.toList()));
-        b3.setPeople(Stream.of(person1).collect(Collectors.toList()));
-        person1.setBooks(Stream.of(b1, b3).collect(Collectors.toList()));
+        b3.setPeople(Stream.of(person3).collect(Collectors.toList()));
+
+        person1.setBooks(Stream.of(b1).collect(Collectors.toList()));
         person2.setBooks(Stream.of(b2).collect(Collectors.toList()));
+        person3.setBooks(Stream.of(b3).collect(Collectors.toList()));
 
         BookCategory bc1,bc2;
         bc1=new BookCategory("Birinci");
@@ -59,14 +65,16 @@ public class SpringCrnkAppConf {
         Address a1, a2, a3;
         a1= new Address("Herbertshofstrasse", 10, "45123", "Essen");
         a2= new Address("Grabenstr",6,"23233", "Essen");
-        a2.setPerson(person1);
         a3 = new Address("Sumperkamp", 46, "44801", "Bochum");
-        a3.setPerson(person2);
+
+        person1.setAddress(a1);
+        person2.setAddress(a2);
+        person3.setAddress(a3);
+
 //        a1.setLocation("Bochum");
         Library l1 = new Library();
-        l1.setName("Zentralbibliothek RUB");
+        l1.setLname("Zentralbibliothek RUB");
         l1.setAddress(a1);
-        a1.setLibrary(l1);
         b1.setBookCategory(bc1);
         b2.setBookCategory(bc1);
         b3.setBookCategory(bc2);
@@ -74,22 +82,24 @@ public class SpringCrnkAppConf {
         b2.setLibrary(l1);
         b3.setLibrary(l1);
         l1.setBooks(Stream.of(b1,b2,b3).collect(Collectors.toList()));
-        person1.setAddress(a2);
-        person2.setAddress(a3);
+
+
         bc1.setBooks(Stream.of(b1,b2).collect(Collectors.toSet()));
         bc2.setBooks(Stream.of(b3).collect(Collectors.toSet()));
 
-
-        bookCategoryRepository.create(bc1);
-        bookCategoryRepository.create(bc2);
-        addressRepository.create(a1);
-//        addressRepository.create(a2);
-        libraryRepository.create(l1);
-        personRepository.create(person1);
-        personRepository.create(person2);
 //        bookRepository.create(b1);
 //        bookRepository.create(b2);
 //        bookRepository.create(b3);
+        bookCategoryRepository.create(bc1);
+        bookCategoryRepository.create(bc2);
+       // addressRepository.create(a1);
+//        addressRepository.create(a2);
+        libraryRepository.create(l1);
+
+        personRepository.create(person1);
+        personRepository.create(person2);
+        personRepository.create(person3);
+
 
 
 

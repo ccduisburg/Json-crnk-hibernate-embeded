@@ -9,8 +9,8 @@ public class Tester {
         BlogClient client = new BlogClient();
         client.init();
         System.out.println("<<Addresses>>");
-        List<Address> addresses = client.findAllAddresses();
-        addresses.forEach(System.out::println);
+       // List<Address> addresses = client.findAllAddresses();
+       // addresses.forEach(System.out::println);
         System.out.println("\n<<Books>>");
         List<Book> books = client.findAllBooks();
         books.forEach(System.out::println);
@@ -25,11 +25,11 @@ public class Tester {
 
         System.out.println("\n<<Libraries address through relationships>>");
         libraries.forEach(l-> {
-            System.out.println(client.findLibraryAddress(l.getId()));
+       //     System.out.println(client.findLibraryAddress(l.getId()));
         });
 
         System.out.println("\n<<BookPersonAddressLibrary>>");
-        List<BookPersonAddressLibrary> bookPersonAddressLibraries = client.findBookPersonAddressLibrary();
-        bookPersonAddressLibraries.forEach(s-> System.out.println(s.toString()));
+        //List<BookPersonAddressLibrary> bookPersonAddressLibraries = client.findBookPersonAddressLibrary();
+      //  bookPersonAddressLibraries.forEach(s-> System.out.println(s.toString()));
     }
 }

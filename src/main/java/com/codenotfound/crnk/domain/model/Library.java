@@ -22,21 +22,37 @@ public class Library implements Serializable {
     @JsonApiId
     @GeneratedValue
     private Long id;
-
-    @Column
-    private String name;
-
-    @OneToOne
-    @JsonApiRelation(opposite = "library")
+    @Embedded
     private Address address;
+    @Column
+    private String lname;
+
+//    @OneToOne(mappedBy = "library", cascade = CascadeType.ALL,
+//            fetch = FetchType.EAGER,optional = false)
+//
+////    @OneToOne(cascade = CascadeType.ALL,
+////            fetch = FetchType.EAGER)
+//    @JsonApiRelation(opposite = "library")
+//    private Address address;
 
     @OneToMany(mappedBy = "library", fetch = FetchType.EAGER)
     @JsonIgnore
     @JsonApiRelation(opposite = "library")
     private List<Book> books;
 
+    public Library() {
+    }
+
+    public Library(String name) {
+        this.lname = lname;
+    }
+
+    public Library(Address address, String lname) {
+        this.address = address;
+        this.lname = lname;
+    }
 
     public String toString() {
-        return String.format("Library(%d,%s)", id, name);
+        return String.format("Library(%d,%s)", id, lname);
     }
 }

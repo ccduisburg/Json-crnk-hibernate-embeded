@@ -42,11 +42,11 @@ public class PersonRepositoryImpl extends ResourceRepositoryBase<Person, Long> i
   @Override
   public ResourceList<Person> findAll(QuerySpec querySpec) {
     Session session = sessionFactory.openSession();
-    List<Person> adress = null;
-    adress = session.createQuery("from Person", Person.class).getResultList();
-    adress.forEach(a-> Hibernate.initialize(a.getBooks()));
+    List<Person> personList = null;
+    personList = session.createQuery("from Person", Person.class).getResultList();
+    personList.forEach(a-> Hibernate.initialize(a.getBooks()));
     session.close();
-    return querySpec.apply(adress);
+    return querySpec.apply(personList);
   }
 
   @Override

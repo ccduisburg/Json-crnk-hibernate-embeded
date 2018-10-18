@@ -5,6 +5,7 @@ import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,11 +28,14 @@ public class Book implements Serializable {
     @JsonApiRelation(opposite = "books")
     private BookCategory bookCategory;
 
+//    @ManyToOne(fetch=FetchType.LAZY)
+//    @JoinColumn(name="library_id")
+
     @ManyToOne
     @JsonApiRelation(opposite = "books")
     private Library library;
 
-    @ManyToMany
+    @ManyToMany  (fetch = FetchType.LAZY)
     @JsonApiRelation(opposite = "books")
     private List<Person> people;
 
