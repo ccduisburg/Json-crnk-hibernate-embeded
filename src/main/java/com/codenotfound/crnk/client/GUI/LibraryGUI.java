@@ -1,8 +1,9 @@
 package com.codenotfound.crnk.client.GUI;
 
+import com.codenotfound.crnk.client.APIClient;
 import com.codenotfound.crnk.client.BlogClient;
 import com.codenotfound.crnk.domain.model.*;
-import com.codenotfound.crnk.domain.repository.*;
+import io.crnk.core.repository.ResourceRepositoryV2;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -15,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -40,22 +42,28 @@ public class LibraryGUI extends Application {
 
     private Label lblprefix,lblvorzeichen,lblBcName,lblPName,lblbPVorname,lblPBeruf,lblAStrasse,lblAHnummer,lblAPLZ,lblACity,lblBTitle,lblBDescription,lblLName;
 
-    private BookRepository bookRepository;
-    private BookCategoryRepository bookCategoryRepository;
-    private LibraryRepository libraryRepository;
-    private PersonRepository personRepository;
-
+//    private BookRepository bookRepository;
+//    private BookCategoryRepository bookCategoryRepository;
+//    private LibraryRepository libraryRepository;
+    private ResourceRepositoryV2<Person, Serializable> personRepository;
+    private ResourceRepositoryV2<Library, Serializable> libraryRepository;
+    private ResourceRepositoryV2<BookCategory, Serializable> bookCategoryRepository;
+    private APIClient clientOTher;
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         client = new BlogClient();
+        clientOTher =new  APIClient();
         client.init();
 
-        bookCategoryRepository = new BookCategoryRepositoryImpl();
-        bookRepository = new BookRepositoryImp();
-        libraryRepository = new LibrarRepositoryImpl();
-        personRepository = new PersonRepositoryImpl();
+//        bookCategoryRepository = new BookCategoryRepositoryImpl();
+//        bookRepository = new BookRepositoryImp();
+//        libraryRepository = new LibrarRepositoryImpl();
+//        personRepository = new PersonRepositoryImpl();
+        personRepository=clientOTher.getRepositoryForType(Person.class);
+        libraryRepository=clientOTher.getRepositoryForType(Library.class);
+        bookCategoryRepository=clientOTher.getRepositoryForType(BookCategory.class);
 
 
         Scene scene = new Scene(getRoot(), 900, 600);
@@ -335,14 +343,15 @@ public class LibraryGUI extends Application {
 
             try {
 
-//                bookCategoryRepository.create(bc1);
-//                libraryRepository.create(l1);
-//                personRepository.create(person1);
+                bookCategoryRepository.create(bc1);
+                libraryRepository.create(l1);
+                personRepository.create(person1);
 
-                client.createbookCategory(bc1);
-                client.createLibrary(l1);
-                client.createPerson(person1);
-                //client.cretateBook(b1);
+//
+//                client.createbookCategory(bc1);
+//                client.createLibrary(l1);
+//                client.createPerson(person1);
+//                //client.cretateBook(b1);
 
                 refreshTable();
                 clearField();

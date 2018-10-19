@@ -100,6 +100,7 @@ public class BlogClient {
         personResourceRepositoryV2.create(person);
 //        List<Book> book=person.getBooks();
 //        bookLongResourceRepositoryV2.create(book.get(0));
+
     }
 
 

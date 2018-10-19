@@ -44,7 +44,7 @@ public class BookCategoryTable {
         em.remove(em.merge(id));
     }
 
-    public BookCategory findById(Integer id) {
+    public BookCategory findById(Long id) {
         try {
             return em.createQuery("from BookCategory where id = :id", BookCategory.class)
                     .setParameter("id", id)

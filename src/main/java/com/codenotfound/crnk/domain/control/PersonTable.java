@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PersonTable {
 
-    @PersistenceContext(unitName = "nonc")
+    @PersistenceContext(unitName = "test2")
     private EntityManager em;
 
 

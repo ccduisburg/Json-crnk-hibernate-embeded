@@ -44,7 +44,7 @@ public class LibraryTable {
         em.remove(em.merge(id));
     }
 
-    public Library findById(Integer id) {
+    public Library findById(Long id) {
         try {
             return em.createQuery("from Library where id = :id", Library.class)
                     .setParameter("id", id)
