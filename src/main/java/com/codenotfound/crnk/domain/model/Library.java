@@ -43,7 +43,7 @@ public class Library implements Serializable {
     public Library() {
     }
 
-    public Library(String name) {
+    public Library(String lname) {
         this.lname = lname;
     }
 

@@ -2,14 +2,16 @@ package com.codenotfound.crnk;
 
 
 import com.codenotfound.crnk.domain.model.*;
-import com.codenotfound.crnk.domain.repository.*;
+import com.codenotfound.crnk.domain.repository.BookCategoryRepository;
+import com.codenotfound.crnk.domain.repository.BookRepository;
+import com.codenotfound.crnk.domain.repository.LibraryRepository;
+import com.codenotfound.crnk.domain.repository.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -71,7 +73,7 @@ public class SpringCrnkAppConf {
         person2.setAddress(a2);
         person3.setAddress(a3);
 
-//        a1.setLocation("Bochum");
+
         Library l1 = new Library();
         l1.setLname("Zentralbibliothek RUB");
         l1.setAddress(a1);
